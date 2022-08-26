@@ -30,7 +30,7 @@ tube is a Youtube-like (without censorship and features you don't need!) Video S
 - Clean, simple, familiar UI
 
 
-**Shipped version:** 1.0~ynh1
+**Shipped version:** 1.1.13~ynh1
 
 
 **Demo:** https://tube.mills.io
@@ -41,9 +41,6 @@ tube is a Youtube-like (without censorship and features you don't need!) Video S
 
 ## Documentation and resources
 
-* Official app website: <https://example.com>
-* Official user documentation: <https://yunohost.org/apps>
-* Official admin documentation: <https://yunohost.org/packaging_apps>
 * Upstream app code repository: <https://git.mills.io/prologic/tube>
 * YunoHost documentation for this app: <https://yunohost.org/app_tube>
 * Report a bug: <https://github.com/YunoHost-Apps/tube_ynh/issues>
