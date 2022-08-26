@@ -1,0 +1,7 @@
+SOURCE_URL=https://git.mills.io/attachments/ddbee596-2446-49ca-9e5c-aee876c749bb
+SOURCE_SUM=fab4da4e1bd7445350200a3c8537c19d12287aae7f06ba122bbdbcf57f46faf5
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=tar.gz
+SOURCE_IN_SUBDIR=false
+SOURCE_FILENAME=tube
+SOURCE_EXTRACT=true
