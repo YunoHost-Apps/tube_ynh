@@ -39,3 +39,9 @@ services = ["__APP__"]
         type = "string"
         help = "Set the author email for the RSS feed"
         bind = "email:/var/www/__APP__/config.json"
+
+        [main.rss.copyright_text]
+        ask = "Copyright Text"
+        type = "string"
+        help = "Set copyright text for the RSS feed"
+        bind = "email:/var/www/__APP__/config.json"

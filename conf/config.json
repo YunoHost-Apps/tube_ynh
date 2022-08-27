@@ -30,10 +30,10 @@
         "link": "http://__DOMAIN__/about",
         "description": "__FEED_DESCRIPTION__",
         "author": {
-            "name": "Author Name",
-            "email": "author@somewhere.example"
+            "name": "__AUTHOR_NAME__",
+            "email": "__AUTHOR_EMAIL__"
         },
-        "copyright": "Copyright Text"
+        "copyright": "__COPYRIGHT_TEXT__"
     },
     "copyright": {
         "content": "All Content herein Public Domain and User Contributed."
