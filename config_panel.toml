@@ -43,5 +43,5 @@ services = ["__APP__"]
         [main.rss.copyright_text]
         ask = "Copyright Text"
         type = "string"
-        help = "Set copyright text for the RSS feed"
+        help = "Set the copyright text for the RSS feed"
         bind = "copyright:/var/www/__APP__/config.json"
