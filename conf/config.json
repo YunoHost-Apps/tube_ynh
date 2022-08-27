@@ -16,7 +16,7 @@
         "timeout": 60
     },
     "transcoder": {
-        "timeout": 600,
+        "timeout": 1200,
         "sizes": {
           "hd720": "720p",
           "hd480": "480p",
