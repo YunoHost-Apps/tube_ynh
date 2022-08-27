@@ -8,7 +8,7 @@
     "server": {
         "host": "127.0.0.1",
         "port": __PORT__,
-        "store_path": "__DATADIR__/tube.db",
+        "store_path": "tube.db",
         "upload_path": "__DATADIR__/uploads",
         "max_upload_size": __MAX_UPLOAD_SIZE__
     },

@@ -129,10 +129,10 @@ chown -R $app:www-data "$datadir"
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-ynh_add_config --template="../conf/config.json" --destination="$datadir/config.json"
+ynh_add_config --template="../conf/config.json" --destination="$final_path/config.json"
 
-chmod 400 "$datadir/config.json"
-chown $app:$app "$datadir/config.json"
+chmod 400 "$final_path/config.json"
+chown $app:$app "$final_path/config.json"
 
 #=================================================
 # SETUP SYSTEMD
