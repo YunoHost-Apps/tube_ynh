@@ -39,6 +39,16 @@ tube is a Youtube-like (without censorship and features you don't need!) Video S
 
 ![Screenshot of Tube](./doc/screenshots/screenshot-1.png)
 
+## Disclaimers / important information
+
+## Configuration
+
+#### Where are stored your videos
+
+Your video files are stored by default in `/home/yunohost.app/tube/videos`.
+
+You can configure options in this file `/var/www/tube/config.json` using the [documentation](https://git.mills.io/prologic/tube#configuration). Remember to restart Tube service if you change your configuration file.
+
 ## Documentation and resources
 
 * Upstream app code repository: <https://git.mills.io/prologic/tube>
