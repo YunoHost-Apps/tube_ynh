@@ -19,6 +19,7 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+max_upload_size=$(ynh_app_setting_get --app=$app --key=max_upload_size)
 
 #=================================================
 # CHECK VERSION
@@ -48,6 +49,24 @@ ynh_abort_if_errors
 ynh_script_progression --message="Stopping a systemd service..." --weight=1
 
 ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
+
+#=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+# If max_upload_size doesn't exist, create it
+if [ -z "$max_upload_size" ]; then
+	max_upload_size=100
+	ynh_app_setting_set --app=$app --key=max_upload_size --value=$max_upload_size
+fi
+
+# Cleaning legacy permissions
+if ynh_legacy_permissions_exists; then
+	ynh_legacy_permissions_delete_all
+
+	ynh_app_setting_delete --app=$app --key=is_public
+fi
 
 #=================================================
 # CREATE DEDICATED USER
