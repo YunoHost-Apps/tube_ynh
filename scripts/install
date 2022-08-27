@@ -33,6 +33,8 @@ app=$YNH_APP_INSTANCE_NAME
 max_upload_size=1048576000
 feed_title="Feed title"
 feed_description="Feed description"
+author_name="Author Name"
+author_email="author@somewhere.example"
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
@@ -55,6 +57,8 @@ ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=max_upload_size --value=$max_upload_size
 ynh_app_setting_set --app=$app --key=feed_title --value=$feed_title
 ynh_app_setting_set --app=$app --key=feed_description --value=$feed_description
+ynh_app_setting_set --app=$app --key=author_name --value=$author_name
+ynh_app_setting_set --app=$app --key=author_email --value=$author_email
 
 #=================================================
 # STANDARD MODIFICATIONS

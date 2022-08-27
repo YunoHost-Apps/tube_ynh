@@ -23,6 +23,8 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 max_upload_size=$(ynh_app_setting_get --app=$app --key=max_upload_size)
 feed_title=$(ynh_app_setting_get --app=$app --key=feed_title)
 feed_description=$(ynh_app_setting_get --app=$app --key=feed_description)
+author_name=$(ynh_app_setting_get --app=$app --key=author_name)
+author_email=$(ynh_app_setting_get --app=$app --key=author_email)
 
 #=================================================
 # CHECK VERSION
@@ -74,6 +76,18 @@ fi
 if [ -z "$feed_description" ]; then
 	feed_description="Feed description"
 	ynh_app_setting_set --app=$app --key=feed_description --value=$feed_description
+fi
+
+# If author_name doesn't exist, create it
+if [ -z "$author_name" ]; then
+	author_name="Author Name"
+	ynh_app_setting_set --app=$app --key=author_name --value=$author_name
+fi
+
+# If author_email doesn't exist, create it
+if [ -z "$author_email" ]; then
+	author_email="author@somewhere.example"
+	ynh_app_setting_set --app=$app --key=author_email --value=$author_email
 fi
 
 # Cleaning legacy permissions

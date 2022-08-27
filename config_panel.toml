@@ -8,7 +8,7 @@ services = ["__APP__"]
     name = "Configuration Options"
 
         [main.config.max_upload_size]
-        ask = "Max upload size"
+        ask = "Max Upload Size"
         type = "number"
         help = "Set max_upload_size to the maximum number of bytes you wish to impose on uploaded and imported videos. Upload(s)/Import(s) that exceed this size will by denied by the server. This is a saftey measure so as to not DoS the Tube server instance. Set it to a sensible value you see fit."
         bind = "max_upload_size:/var/www/__APP__/config.json"
@@ -17,7 +17,7 @@ services = ["__APP__"]
     name = "RSS feed information"
 
         [main.rss.feed_title]
-        ask = "Feed title"
+        ask = "Feed Title"
         type = "string"
         help = "Set the feed title for your RSS feed"
         bind = "title:/var/www/__APP__/config.json"
@@ -28,3 +28,14 @@ services = ["__APP__"]
         help = "Set the feed description for your RSS feed"
         bind = "description:/var/www/__APP__/config.json"
         
+        [main.rss.author_name]
+        ask = "Author Name"
+        type = "string"
+        help = "Set the author name for the RSS feed"
+        bind = "name:/var/www/__APP__/config.json"
+
+        [main.rss.author_email]
+        ask = "Author Email"
+        type = "string"
+        help = "Set the author email for the RSS feed"
+        bind = "email:/var/www/__APP__/config.json"
