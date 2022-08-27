@@ -19,6 +19,14 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+port=$(ynh_app_setting_get --app=$app --key=port)
+
+max_upload_size=$(ynh_app_setting_get --app=$app --key=max_upload_size)
+feed_title=$(ynh_app_setting_get --app=$app --key=feed_title)
+feed_description=$(ynh_app_setting_get --app=$app --key=feed_description)
+author_name=$(ynh_app_setting_get --app=$app --key=author_name)
+author_email=$(ynh_app_setting_get --app=$app --key=author_email)
+copyright_text=$(ynh_app_setting_get --app=$app --key=copyright_text)
 
 #=================================================
 # CHECK VERSION
@@ -50,6 +58,55 @@ ynh_script_progression --message="Stopping a systemd service..." --weight=1
 ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
 
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+# If max_upload_size doesn't exist, create it
+if [ -z "$max_upload_size" ]; then
+	max_upload_size=100
+	ynh_app_setting_set --app=$app --key=max_upload_size --value=$max_upload_size
+fi
+
+# If feed_title doesn't exist, create it
+if [ -z "$feed_title" ]; then
+	feed_title="Feed title"
+	ynh_app_setting_set --app=$app --key=feed_title --value=$feed_title
+fi
+
+# If feed_description doesn't exist, create it
+if [ -z "$feed_description" ]; then
+	feed_description="Feed description"
+	ynh_app_setting_set --app=$app --key=feed_description --value=$feed_description
+fi
+
+# If author_name doesn't exist, create it
+if [ -z "$author_name" ]; then
+	author_name="Author Name"
+	ynh_app_setting_set --app=$app --key=author_name --value=$author_name
+fi
+
+# If author_email doesn't exist, create it
+if [ -z "$author_email" ]; then
+	author_email="author@somewhere.example"
+	ynh_app_setting_set --app=$app --key=author_email --value=$author_email
+fi
+
+# If copyright_text doesn't exist, create it
+if [ -z "$copyright_text" ]; then
+	copyright_text="Copyright Text"
+	ynh_app_setting_set --app=$app --key=copyright_text --value=$copyright_text
+fi
+
+
+# Cleaning legacy permissions
+if ynh_legacy_permissions_exists; then
+	ynh_legacy_permissions_delete_all
+
+	ynh_app_setting_delete --app=$app --key=is_public
+fi
+
+#=================================================
 # CREATE DEDICATED USER
 #=================================================
 ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
@@ -72,7 +129,7 @@ fi
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod +x "$final_path/$app"
+chmod +x "$final_path/tube"
 
 #=================================================
 # NGINX CONFIGURATION

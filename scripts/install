@@ -30,6 +30,13 @@ is_public=$YNH_APP_ARG_IS_PUBLIC
 
 app=$YNH_APP_INSTANCE_NAME
 
+max_upload_size=1048576000
+feed_title="Feed title"
+feed_description="Feed description"
+author_name="Author Name"
+author_email="author@somewhere.example"
+copyright_text="Copyright Text"
+
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
@@ -48,6 +55,12 @@ ynh_script_progression --message="Storing installation settings..." --weight=1
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
+ynh_app_setting_set --app=$app --key=max_upload_size --value=$max_upload_size
+ynh_app_setting_set --app=$app --key=feed_title --value=$feed_title
+ynh_app_setting_set --app=$app --key=feed_description --value=$feed_description
+ynh_app_setting_set --app=$app --key=author_name --value=$author_name
+ynh_app_setting_set --app=$app --key=author_email --value=$author_email
+ynh_app_setting_set --app=$app --key=copyright_text --value=$copyright_text
 
 #=================================================
 # STANDARD MODIFICATIONS
@@ -80,7 +93,7 @@ ynh_setup_source --dest_dir="$final_path" --source_id=$YNH_ARCH
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod +x "$final_path/$app"
+chmod +x "$final_path/tube"
 
 #=================================================
 # NGINX CONFIGURATION
