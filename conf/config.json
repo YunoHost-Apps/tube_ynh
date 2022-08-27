@@ -17,12 +17,7 @@
     },
     "transcoder": {
         "timeout": 600,
-        "sizes": {
-          "hd720": "720p",
-          "hd480": "480p",
-          "nhd":   "360p",
-          "film":  "240p"
-        }
+        "sizes": null
     },
     "feed": {
         "external_url": "https://__DOMAIN__",
