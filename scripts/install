@@ -30,7 +30,7 @@ is_public=$YNH_APP_ARG_IS_PUBLIC
 
 app=$YNH_APP_INSTANCE_NAME
 
-max_upload_size=100
+max_upload_size=1048576000
 feed_title="Feed title"
 feed_description="Feed description"
 

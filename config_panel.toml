@@ -26,5 +26,5 @@ services = ["__APP__"]
         ask = "Feed Description"
         type = "string"
         help = "Set the feed description for your RSS feed"
-        bind = "title:/var/www/__APP__/config.json"
+        bind = "description:/var/www/__APP__/config.json"
         
