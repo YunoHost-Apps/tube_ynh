@@ -19,7 +19,10 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+
 max_upload_size=$(ynh_app_setting_get --app=$app --key=max_upload_size)
+feed_title=$(ynh_app_setting_get --app=$app --key=feed_title)
+feed_description=$(ynh_app_setting_get --app=$app --key=feed_description)
 
 #=================================================
 # CHECK VERSION
@@ -59,6 +62,18 @@ ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 if [ -z "$max_upload_size" ]; then
 	max_upload_size=100
 	ynh_app_setting_set --app=$app --key=max_upload_size --value=$max_upload_size
+fi
+
+# If feed_title doesn't exist, create it
+if [ -z "$feed_title" ]; then
+	feed_title="Feed title"
+	ynh_app_setting_set --app=$app --key=feed_title --value=$feed_title
+fi
+
+# If feed_description doesn't exist, create it
+if [ -z "$feed_description" ]; then
+	feed_description="Feed description"
+	ynh_app_setting_set --app=$app --key=feed_description --value=$feed_description
 fi
 
 # Cleaning legacy permissions

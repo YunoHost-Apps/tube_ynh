@@ -26,9 +26,9 @@
     },
     "feed": {
         "external_url": "https://__DOMAIN__",
-        "title": "Feed Title",
+        "title": "__FEED_TITLE__",
         "link": "http://__DOMAIN__/about",
-        "description": "Feed Description",
+        "description": "__FEED_DESCRIPTION__",
         "author": {
             "name": "Author Name",
             "email": "author@somewhere.example"

@@ -12,4 +12,19 @@ services = ["__APP__"]
         type = "number"
         help = "Set max_upload_size to the maximum number of bytes you wish to impose on uploaded and imported videos. Upload(s)/Import(s) that exceed this size will by denied by the server. This is a saftey measure so as to not DoS the Tube server instance. Set it to a sensible value you see fit."
         bind = "max_upload_size:/var/www/__APP__/config.json"
+
+    [main.rss]
+    name = "RSS feed information"
+
+        [main.rss.feed_title]
+        ask = "Feed title"
+        type = "string"
+        help = "Set the feed title for your RSS feed"
+        bind = "title:/var/www/__APP__/config.json"
+
+        [main.rss.feed_description]
+        ask = "Feed Description"
+        type = "string"
+        help = "Set the feed description for your RSS feed"
+        bind = "title:/var/www/__APP__/config.json"
         
