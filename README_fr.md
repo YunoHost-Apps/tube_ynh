@@ -51,6 +51,7 @@ You can configure options in this file `/var/www/tube/config.json` using the [do
 
 RSS feed address is available at `https://your_domain.tld/feed.xml`
 
+The data directory with uploaded videos is untouched when upgrading the app. If you want to delete the data directory with the application, use the `--purge` option: `sudo yunohost app remove tube --purge`
 ## Documentations et ressources
 
 * Dépôt de code officiel de l'app : <https://git.mills.io/prologic/tube>
