@@ -24,7 +24,7 @@ tube is a Youtube-like (without censorship and features you don't need!) Video S
 - Builtin ffmpeg-based Transcoder that automatically converts your uploaded content to MP4 H.264 / AAC
 - Builtin automatic thumbnail generator
 - No database (video info pulled from file metadata)
-- No JavaScript (the player UI is entirely HTML, except for the uploader which degrades!))
+- No JavaScript (the player UI is entirely HTML, except for the uploader which degrades!)
 - Easy to customize CSS and HTML template
 - Automatically generates RSS feed (at /feed.xml)
 - Clean, simple, familiar UI
