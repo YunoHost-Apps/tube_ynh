@@ -6,6 +6,7 @@ After=network.target
 Type=simple
 User=__APP__
 Group=__APP__
+Environment=auth_password=__PASSWORD__
 WorkingDirectory=__FINALPATH__/
 ExecStart=__FINALPATH__/tube -c __FINALPATH__/config.json
 
