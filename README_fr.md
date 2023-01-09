@@ -36,7 +36,7 @@ tube is a Youtube-like (without censorship and features you don't need!) Video S
 
 ## Captures d'écran
 
-![Capture d'écran de Tube](./doc/screenshots/screenshot-1.png)
+![Capture d'écran de Tube](./doc/screenshots/screenshot.png)
 
 ## Avertissements / informations importantes
 
