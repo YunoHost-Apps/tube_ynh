@@ -10,25 +10,8 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# MANAGE SCRIPT FAILURE
-#=================================================
-
-#REMOVEME? ynh_clean_setup () {
-	### Remove this function if there's nothing to clean before calling the remove script.
-	true
-}
-# Exit if an error occurs during the execution of the script
-#REMOVEME? ynh_abort_if_errors
-
-#=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
-
-#REMOVEME? domain=$YNH_APP_ARG_DOMAIN
-path="/"
-#REMOVEME? is_public=$YNH_APP_ARG_IS_PUBLIC
-
-#REMOVEME? app=$YNH_APP_INSTANCE_NAME
 
 max_upload_size=1048576000
 feed_title="Feed title"
@@ -38,29 +21,10 @@ author_email="author@somewhere.example"
 copyright_text="Copyright Text"
 
 #=================================================
-# CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
-#=================================================
-#REMOVEME? ynh_script_progression --message="Validating installation parameters..." --weight=1
-
-# Check machine architecture (in particular, we don't support ARM and 32bit machines)
-if [ $YNH_ARCH != "amd64" ] && [ $YNH_ARCH != "aarch64" ] && [ $YNH_ARCH != "arm64" ]
-then
-	ynh_die --message="Sorry, but this app can only be installed on a 64 bits machine :("
-fi
-
-#REMOVEME? install_dir=/var/www/$app
-#REMOVEME? test ! -e "$install_dir" || ynh_die --message="This path already contains a folder"
-
-# Register (book) web path
-#REMOVEME? ynh_webpath_register --app=$app --domain=$domain --path=$path
-
-#=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-#REMOVEME? ynh_script_progression --message="Storing installation settings..." --weight=1
+ynh_script_progression --message="Storing installation settings..." --weight=1
 
-#REMOVEME? ynh_app_setting_set --app=$app --key=domain --value=$domain
-#REMOVEME? ynh_app_setting_set --app=$app --key=path --value=$path
 ynh_app_setting_set --app=$app --key=max_upload_size --value=$max_upload_size
 ynh_app_setting_set --app=$app --key=feed_title --value=$feed_title
 ynh_app_setting_set --app=$app --key=feed_description --value=$feed_description
@@ -69,41 +33,13 @@ ynh_app_setting_set --app=$app --key=author_email --value=$author_email
 ynh_app_setting_set --app=$app --key=copyright_text --value=$copyright_text
 
 #=================================================
-# STANDARD MODIFICATIONS
-#=================================================
-# FIND AND OPEN A PORT
-#=================================================
-#REMOVEME? ynh_script_progression --message="Finding an available port..." --weight=1
-
-# Find an available port
-#REMOVEME? port=$(ynh_find_port --port=8000)
-#REMOVEME? ynh_app_setting_set --app=$app --key=port --value=$port
-
-#=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-#REMOVEME? ynh_script_progression --message="Installing dependencies..." --weight=4
-
-#REMOVEME? ynh_install_app_dependencies $pkg_dependencies
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-#REMOVEME? ynh_script_progression --message="Configuring system user..." --weight=1
-
-# Create a system user
-#REMOVEME? ynh_system_user_create --username=$app --home_dir="$install_dir"
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
 
-#REMOVEME? ynh_app_setting_set --app=$app --key=install_dir --value=$install_dir
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir" --source_id=$YNH_ARCH
 
-chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 chmod +x "$install_dir/tube"
@@ -116,20 +52,13 @@ ynh_script_progression --message="Configuring NGINX web server..." --weight=1
 # Create a dedicated NGINX config
 ynh_add_nginx_config
 
-#=================================================
-# CREATE DATA DIRECTORY
-#=================================================
-ynh_script_progression --message="Creating a data directory..." --weight=1
+# Create a dedicated systemd config
+ynh_add_systemd_config
 
-#REMOVEME? data_dir=/home/yunohost.app/$app
-#REMOVEME? ynh_app_setting_set --app=$app --key=data_dir --value=$data_dir
+# Use logrotate to manage application logfile(s)
+ynh_use_logrotate
 
-mkdir -p $data_dir
-#mkdir -p $data_dir/{video,uploads}
-
-chmod 750 "$data_dir"
-chmod -R o-rwx "$data_dir"
-chown -R $app:www-data "$data_dir"
+yunohost service add $app --description="Video Sharing App" --log="/var/log/$app/$app.log"
 
 #=================================================
 # ADD A CONFIGURATION
@@ -142,57 +71,12 @@ chmod 400 "$install_dir/config.json"
 chown $app:$app "$install_dir/config.json"
 
 #=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Configuring a systemd service..." --weight=1
-
-# Create a dedicated systemd config
-ynh_add_systemd_config
-
-#=================================================
-# GENERIC FINALIZATION
-#=================================================
-# SETUP LOGROTATE
-#=================================================
-ynh_script_progression --message="Configuring log rotation..." --weight=1
-
-# Use logrotate to manage application logfile(s)
-ynh_use_logrotate
-
-#=================================================
-# INTEGRATE SERVICE IN YUNOHOST
-#=================================================
-ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
-
-yunohost service add $app --description="Video Sharing App" --log="/var/log/$app/$app.log"
-
-#=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 # Start a systemd service
 ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
-
-#=================================================
-# SETUP SSOWAT
-#=================================================
-#REMOVEME? ynh_script_progression --message="Configuring permissions..." --weight=1
-
-# Make app public if necessary
-#REMOVEME? if [ $is_public -eq 1 ]
-then
-	# Everyone can access the app.
-	# The "main" permission is automatically created before the install script.
-#REMOVEME? 	ynh_permission_update --permission="main" --add="visitors"
-fi
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-#REMOVEME? ynh_script_progression --message="Reloading NGINX web server..." --weight=1
-
-#REMOVEME? ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
