@@ -6,7 +6,7 @@
 # PHP APP SPECIFIC
 #=================================================
 
-pkg_dependencies="ffmpeg"
+#REMOVEME? pkg_dependencies="ffmpeg"
 
 #=================================================
 # PERSONAL HELPERS
