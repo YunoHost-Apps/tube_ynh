@@ -6,8 +6,8 @@ After=network.target
 Type=simple
 User=__APP__
 Group=__APP__
-WorkingDirectory=__FINALPATH__/
-ExecStart=__FINALPATH__/tube -c __FINALPATH__/config.json
+WorkingDirectory=__INSTALL_DIR__/
+ExecStart=__INSTALL_DIR__/tube -c __INSTALL_DIR__/config.json
 
 # Sandboxing options to harden security
 # Depending on specificities of your service/app, you may need to tweak these
