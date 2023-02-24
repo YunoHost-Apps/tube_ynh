@@ -1,5 +1,3 @@
-## Configuration
-
 #### Where are stored your videos
 
 Your video files are stored by default in `/home/yunohost.app/tube/videos`.
