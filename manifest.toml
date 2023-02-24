@@ -5,7 +5,7 @@ name = "Tube"
 description.en = "Youtube-like, video Sharing App"
 description.fr = "Application de partage de vidéos de type Youtube"
 
-version = "1.1.13~ynh2"
+version = "1.2.0~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -36,7 +36,7 @@ ram.runtime = "50M"
 
 [resources]
     [resources.ports]
-    
+
     [resources.system_user]
 
     [resources.install_dir]

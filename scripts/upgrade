@@ -10,18 +10,6 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# LOAD SETTINGS
-#=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=1
-
-#REMOVEME? max_upload_size=$(ynh_app_setting_get --app=$app --key=max_upload_size)
-#REMOVEME? feed_title=$(ynh_app_setting_get --app=$app --key=feed_title)
-#REMOVEME? feed_description=$(ynh_app_setting_get --app=$app --key=feed_description)
-#REMOVEME? author_name=$(ynh_app_setting_get --app=$app --key=author_name)
-#REMOVEME? author_email=$(ynh_app_setting_get --app=$app --key=author_email)
-#REMOVEME? copyright_text=$(ynh_app_setting_get --app=$app --key=copyright_text)
-
-#=================================================
 # CHECK VERSION
 #=================================================
 
@@ -42,37 +30,37 @@ ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
 # If max_upload_size doesn't exist, create it
-if [ -z "$max_upload_size" ]; then
+if [ -z "${max_upload_size:-}" ]; then
 	max_upload_size=100
 	ynh_app_setting_set --app=$app --key=max_upload_size --value=$max_upload_size
 fi
 
 # If feed_title doesn't exist, create it
-if [ -z "$feed_title" ]; then
+if [ -z "${feed_title:-}" ]; then
 	feed_title="Feed title"
 	ynh_app_setting_set --app=$app --key=feed_title --value=$feed_title
 fi
 
 # If feed_description doesn't exist, create it
-if [ -z "$feed_description" ]; then
+if [ -z "${feed_description:-}" ]; then
 	feed_description="Feed description"
 	ynh_app_setting_set --app=$app --key=feed_description --value=$feed_description
 fi
 
 # If author_name doesn't exist, create it
-if [ -z "$author_name" ]; then
+if [ -z "${author_name:-}" ]; then
 	author_name="Author Name"
 	ynh_app_setting_set --app=$app --key=author_name --value=$author_name
 fi
 
 # If author_email doesn't exist, create it
-if [ -z "$author_email" ]; then
+if [ -z "${author_email:-}" ]; then
 	author_email="author@somewhere.example"
 	ynh_app_setting_set --app=$app --key=author_email --value=$author_email
 fi
 
 # If copyright_text doesn't exist, create it
-if [ -z "$copyright_text" ]; then
+if [ -z "${copyright_text:-}" ]; then
 	copyright_text="Copyright Text"
 	ynh_app_setting_set --app=$app --key=copyright_text --value=$copyright_text
 fi
