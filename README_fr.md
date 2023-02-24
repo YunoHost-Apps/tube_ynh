@@ -39,7 +39,6 @@ tube is a Youtube-like (without censorship and features you don't need!) Video S
 
 ![Capture d’écran de Tube](./doc/screenshots/screenshot.png)
 
-The data directory with uploaded videos is untouched when upgrading the app. If you want to delete the data directory with the application, use the `--purge` option: `sudo yunohost app remove tube --purge`
 ## Documentations et ressources
 
 * Site officiel de l’app : <https://tube.mills.io>
