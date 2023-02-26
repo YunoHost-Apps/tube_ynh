@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # Tube for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/tube.svg)](https://dash.yunohost.org/appci/app/tube) ![Working status](https://ci-apps.yunohost.org/ci/badges/tube.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/tube.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/tube.svg)](https://dash.yunohost.org/appci/app/tube) ![Working status](https://ci-apps.yunohost.org/ci/badges/tube.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/tube.maintain.svg)
+
 [![Install Tube with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=tube)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -30,7 +31,7 @@ tube is a Youtube-like (without censorship and features you don't need!) Video S
 - Clean, simple, familiar UI
 
 
-**Shipped version:** 1.1.13~ynh2
+**Shipped version:** 1.2.0~ynh1
 
 **Demo:** https://tube.mills.io
 
@@ -38,21 +39,9 @@ tube is a Youtube-like (without censorship and features you don't need!) Video S
 
 ![Screenshot of Tube](./doc/screenshots/screenshot.png)
 
-## Disclaimers / important information
-
-## Configuration
-
-#### Where are stored your videos
-
-Your video files are stored by default in `/home/yunohost.app/tube/videos`.
-
-You can configure options in this file `/var/www/tube/config.json` using the [documentation](https://git.mills.io/prologic/tube#configuration). Remember to restart Tube service if you change your configuration file.
-
-RSS feed address is available at `https://your_domain.tld/feed.xml`
-
-The data directory with uploaded videos is untouched when upgrading the app. If you want to delete the data directory with the application, use the `--purge` option: `sudo yunohost app remove tube --purge`
 ## Documentation and resources
 
+* Official app website: <https://tube.mills.io>
 * Upstream app code repository: <https://git.mills.io/prologic/tube>
 * YunoHost documentation for this app: <https://yunohost.org/app_tube>
 * Report a bug: <https://github.com/YunoHost-Apps/tube_ynh/issues>

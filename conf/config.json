@@ -1,7 +1,7 @@
 {
     "library": [
         {
-            "path": "__DATADIR__/videos",
+            "path": "__DATA_DIR__/videos",
             "prefix": ""
         }
     ],
@@ -9,7 +9,7 @@
         "host": "127.0.0.1",
         "port": __PORT__,
         "store_path": "tube.db",
-        "upload_path": "__DATADIR__/uploads",
+        "upload_path": "__DATA_DIR__/uploads",
         "max_upload_size": __MAX_UPLOAD_SIZE__
     },
     "thumbnailer": {

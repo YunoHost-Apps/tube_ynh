@@ -10,43 +10,10 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# LOAD SETTINGS
-#=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=1
-
-app=$YNH_APP_INSTANCE_NAME
-
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-path_url=$(ynh_app_setting_get --app=$app --key=path)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-port=$(ynh_app_setting_get --app=$app --key=port)
-
-max_upload_size=$(ynh_app_setting_get --app=$app --key=max_upload_size)
-feed_title=$(ynh_app_setting_get --app=$app --key=feed_title)
-feed_description=$(ynh_app_setting_get --app=$app --key=feed_description)
-author_name=$(ynh_app_setting_get --app=$app --key=author_name)
-author_email=$(ynh_app_setting_get --app=$app --key=author_email)
-copyright_text=$(ynh_app_setting_get --app=$app --key=copyright_text)
-
-#=================================================
 # CHECK VERSION
 #=================================================
 
 upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
-#=================================================
-ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=1
-
-# Backup the current version of the app
-ynh_backup_before_upgrade
-ynh_clean_setup () {
-	# Restore it if the upgrade fails
-	ynh_restore_upgradebackup
-}
-# Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -63,56 +30,40 @@ ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
 # If max_upload_size doesn't exist, create it
-if [ -z "$max_upload_size" ]; then
+if [ -z "${max_upload_size:-}" ]; then
 	max_upload_size=100
 	ynh_app_setting_set --app=$app --key=max_upload_size --value=$max_upload_size
 fi
 
 # If feed_title doesn't exist, create it
-if [ -z "$feed_title" ]; then
+if [ -z "${feed_title:-}" ]; then
 	feed_title="Feed title"
 	ynh_app_setting_set --app=$app --key=feed_title --value=$feed_title
 fi
 
 # If feed_description doesn't exist, create it
-if [ -z "$feed_description" ]; then
+if [ -z "${feed_description:-}" ]; then
 	feed_description="Feed description"
 	ynh_app_setting_set --app=$app --key=feed_description --value=$feed_description
 fi
 
 # If author_name doesn't exist, create it
-if [ -z "$author_name" ]; then
+if [ -z "${author_name:-}" ]; then
 	author_name="Author Name"
 	ynh_app_setting_set --app=$app --key=author_name --value=$author_name
 fi
 
 # If author_email doesn't exist, create it
-if [ -z "$author_email" ]; then
+if [ -z "${author_email:-}" ]; then
 	author_email="author@somewhere.example"
 	ynh_app_setting_set --app=$app --key=author_email --value=$author_email
 fi
 
 # If copyright_text doesn't exist, create it
-if [ -z "$copyright_text" ]; then
+if [ -z "${copyright_text:-}" ]; then
 	copyright_text="Copyright Text"
 	ynh_app_setting_set --app=$app --key=copyright_text --value=$copyright_text
 fi
-
-
-# Cleaning legacy permissions
-if ynh_legacy_permissions_exists; then
-	ynh_legacy_permissions_delete_all
-
-	ynh_app_setting_delete --app=$app --key=is_public
-fi
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
-
-# Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -123,51 +74,29 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=1
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path"  --source_id=$YNH_ARCH --keep="config.json"
+	ynh_setup_source --dest_dir="$install_dir"  --source_id=$YNH_ARCH --keep="config.json"
 fi
 
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R $app:www-data "$final_path"
-chmod +x "$final_path/tube"
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
+chmod +x "$install_dir/tube"
 
 #=================================================
-# UPGRADE DEPENDENCIES
+# RECONFIGURE THE APP (UPDATE CONF, APPLY MIGRATIONS, ...)
 #=================================================
-ynh_script_progression --message="Upgrading dependencies..." --weight=1
-
-ynh_install_app_dependencies $pkg_dependencies
-
+# UPDATE A CONFIG FILE
 #=================================================
-# NGINX CONFIGURATION
-#=================================================
-ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=1
+ynh_script_progression --message="Updating a configuration file..." --weight=1
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
 
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Upgrading systemd configuration..." --weight=1
-
 # Create a dedicated systemd config
 ynh_add_systemd_config
 
-#=================================================
-# GENERIC FINALIZATION
-#=================================================
-# SETUP LOGROTATE
-#=================================================
-ynh_script_progression --message="Upgrading logrotate configuration..." --weight=1
-
 # Use logrotate to manage app-specific logfile(s)
 ynh_use_logrotate --non-append
-
-#=================================================
-# INTEGRATE SERVICE IN YUNOHOST
-#=================================================
-ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
 
 yunohost service add $app --description="Video Sharing App" --log="/var/log/$app/$app.log"
 
@@ -177,13 +106,6 @@ yunohost service add $app --description="Video Sharing App" --log="/var/log/$app
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=1
-
-ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT

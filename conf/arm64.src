@@ -1,5 +1,5 @@
-SOURCE_URL=https://git.mills.io/attachments/83eb6995-6f5b-4d45-97e2-c92436cca514
-SOURCE_SUM=df8a451351e17ae7ae191f06fd05fa8320e05827be363c9bfe07a8e1c85ee3b5
+SOURCE_URL=https://git.mills.io/attachments/9a713da8-ae61-434b-87c8-267a2073c2dd
+SOURCE_SUM=845537d1cd6930fd53c737e8fa58fde0b40228fb78b1fe41b9aaafcfe0b41cba
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=false

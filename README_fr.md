@@ -5,15 +5,16 @@ It shall NOT be edited by hand.
 
 # Tube pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/tube.svg)](https://dash.yunohost.org/appci/app/tube) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/tube.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/tube.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/tube.svg)](https://dash.yunohost.org/appci/app/tube) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/tube.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/tube.maintain.svg)
+
 [![Installer Tube avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=tube)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Tube rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Tube rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 tube is a Youtube-like (without censorship and features you don't need!) Video Sharing App written in Go which also supports automatic transcoding to MP4 H.265 AAC, multiple collections and RSS feed.
 
@@ -30,30 +31,18 @@ tube is a Youtube-like (without censorship and features you don't need!) Video S
 - Clean, simple, familiar UI
 
 
-**Version incluse :** 1.1.13~ynh2
+**Version incluse :** 1.2.0~ynh1
 
 **Démo :** https://tube.mills.io
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de Tube](./doc/screenshots/screenshot.png)
+![Capture d’écran de Tube](./doc/screenshots/screenshot.png)
 
-## Avertissements / informations importantes
-
-## Configuration
-
-#### Where are stored your videos
-
-Your video files are stored by default in `/home/yunohost.app/tube/videos`.
-
-You can configure options in this file `/var/www/tube/config.json` using the [documentation](https://git.mills.io/prologic/tube#configuration). Remember to restart Tube service if you change your configuration file.
-
-RSS feed address is available at `https://your_domain.tld/feed.xml`
-
-The data directory with uploaded videos is untouched when upgrading the app. If you want to delete the data directory with the application, use the `--purge` option: `sudo yunohost app remove tube --purge`
 ## Documentations et ressources
 
-* Dépôt de code officiel de l'app : <https://git.mills.io/prologic/tube>
+* Site officiel de l’app : <https://tube.mills.io>
+* Dépôt de code officiel de l’app : <https://git.mills.io/prologic/tube>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_tube>
 * Signaler un bug : <https://github.com/YunoHost-Apps/tube_ynh/issues>
 
@@ -69,4 +58,4 @@ ou
 sudo yunohost app upgrade tube -u https://github.com/YunoHost-Apps/tube_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
