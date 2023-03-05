@@ -16,7 +16,7 @@ code = "https://git.mills.io/prologic/tube"
 website = "https://tube.mills.io"
 
 [integration]
-yunohost = ">= 11.1.12"
+yunohost = ">= 11.1.13"
 architectures = ["amd64", "arm64"]
 multi_instance = true
 ldap = false
