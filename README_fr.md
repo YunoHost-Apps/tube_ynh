@@ -16,20 +16,19 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-tube is a Youtube-like (without censorship and features you don't need!) Video Sharing App written in Go which also supports automatic transcoding to MP4 H.265 AAC, multiple collections and RSS feed.
+Tube est une application de partage de vidéos de type Youtube (sans censure ni fonctionnalités dont vous n'avez pas besoin !) écrite en Go qui prend également en charge le transcodage automatique en MP4 H.265 AAC, plusieurs collections et le flux RSS.
 
-### Features
+### Caractéristiques
 
-- Easy to add videos (just move a file into the folder)
-- Easy to upload videos (just use the builtin uploader and automatic transcoder!)
-- Builtin ffmpeg-based Transcoder that automatically converts your uploaded content to MP4 H.264 / AAC
-- Builtin automatic thumbnail generator
-- No database (video info pulled from file metadata)
-- No JavaScript (the player UI is entirely HTML, except for the uploader which degrades!)
-- Easy to customize CSS and HTML template
-- Automatically generates RSS feed (at /feed.xml)
-- Clean, simple, familiar UI
-
+- Facile à ajouter des vidéos (il suffit de déplacer un fichier dans le dossier)
+- Facile à télécharger des vidéos (il suffit d'utiliser le téléchargeur intégré et le transcodeur automatique !)
+- Transcodeur intégré basé sur ffmpeg qui convertit automatiquement votre contenu téléchargé en MP4 H.264 / AAC
+- Générateur de vignettes automatique intégré
+- Pas de base de données (informations vidéo extraites des métadonnées du fichier)
+- Pas de JavaScript (l'interface utilisateur du lecteur est entièrement en HTML, à l'exception de l'uploader qui se dégrade !)
+- Modèle CSS et HTML facile à personnaliser
+- Génère automatiquement un flux RSS (à /feed.xml)
+- Interface utilisateur propre, simple et familière
 
 **Version incluse :** 1.2.0~ynh2
 
