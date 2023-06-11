@@ -31,7 +31,7 @@ Tube is a Youtube-like (without censorship and features you don't need!) Video S
 - Clean, simple, familiar UI
 
 
-**Shipped version:** 1.2.0~ynh2
+**Shipped version:** 1.2.0~ynh3
 
 **Demo:** https://tube.mills.io
 

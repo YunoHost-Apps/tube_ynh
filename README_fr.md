@@ -30,7 +30,7 @@ Tube est une application de partage de vidéos de type Youtube (sans censure ni 
 - Génère automatiquement un flux RSS (à /feed.xml)
 - Interface utilisateur propre, simple et familière
 
-**Version incluse :** 1.2.0~ynh2
+**Version incluse :** 1.2.0~ynh3
 
 **Démo :** https://tube.mills.io
 
