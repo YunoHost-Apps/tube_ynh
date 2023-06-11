@@ -16,7 +16,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
-tube is a Youtube-like (without censorship and features you don't need!) Video Sharing App written in Go which also supports automatic transcoding to MP4 H.265 AAC, multiple collections and RSS feed.
+Tube is a Youtube-like (without censorship and features you don't need!) Video Sharing App written in Go which also supports automatic transcoding to MP4 H.265 AAC, multiple collections and RSS feed.
 
 ### Features
 
@@ -31,7 +31,7 @@ tube is a Youtube-like (without censorship and features you don't need!) Video S
 - Clean, simple, familiar UI
 
 
-**Shipped version:** 1.2.0~ynh2
+**Shipped version:** 1.2.0~ynh3
 
 **Demo:** https://tube.mills.io
 
