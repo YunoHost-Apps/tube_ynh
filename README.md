@@ -43,7 +43,7 @@ Tube is a Youtube-like (without censorship and features you don't need!) Video S
 
 * Official app website: <https://tube.mills.io>
 * Upstream app code repository: <https://git.mills.io/prologic/tube>
-* YunoHost documentation for this app: <https://yunohost.org/app_tube>
+* YunoHost Store: <https://apps.yunohost.org/app/tube>
 * Report a bug: <https://github.com/YunoHost-Apps/tube_ynh/issues>
 
 ## Developer info

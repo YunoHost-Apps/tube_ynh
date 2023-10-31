@@ -42,7 +42,7 @@ Tube est une application de partage de vidéos de type Youtube (sans censure ni 
 
 * Site officiel de l’app : <https://tube.mills.io>
 * Dépôt de code officiel de l’app : <https://git.mills.io/prologic/tube>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_tube>
+* YunoHost Store: <https://apps.yunohost.org/app/tube>
 * Signaler un bug : <https://github.com/YunoHost-Apps/tube_ynh/issues>
 
 ## Informations pour les développeurs
