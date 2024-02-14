@@ -7,7 +7,7 @@ description.fr = "Application de partage de vidéos de type Youtube"
 
 version = "1.2.0~ynh3"
 
-maintainers = ["eric_G"]
+maintainers = []
 
 [upstream]
 license = "MIT"
