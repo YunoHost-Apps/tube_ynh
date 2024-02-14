@@ -7,7 +7,7 @@ description.fr = "Application de partage de vidéos de type Youtube"
 
 version = "1.2.0~ynh3"
 
-maintainers = ["eric_G"]
+maintainers = []
 
 [upstream]
 license = "MIT"
@@ -16,7 +16,7 @@ code = "https://git.mills.io/prologic/tube"
 website = "https://tube.mills.io"
 
 [integration]
-yunohost = ">= 11.1.20"
+yunohost = ">= 11.2"
 architectures = ["amd64", "arm64"]
 multi_instance = true
 ldap = false
@@ -28,7 +28,6 @@ ram.runtime = "50M"
 [install]
     [install.domain]
     type = "domain"
-    full_domain = true
 
     [install.init_main_permission]
     type = "group"
@@ -46,6 +45,10 @@ ram.runtime = "50M"
         arm64.sha256 = "845537d1cd6930fd53c737e8fa58fde0b40228fb78b1fe41b9aaafcfe0b41cba"
         rename = "tube"
         format = "tar.gz"
+
+        autoupdate.strategy = "latest_forgejo_release"
+        autoupdate.asset.amd64 = "^tube_.*_linux_amd64.tar.gz$"
+        autoupdate.asset.arm64 = "^tube_.*_linux_arm64.tar.gz$"
 
     [resources.ports]
 
