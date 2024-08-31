@@ -1,84 +1,77 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# CHECK VERSION
-#=================================================
-
-upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# STANDARD UPGRADE STEPS
-#=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Stopping a systemd service..." --weight=1
+ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
+ynh_systemctl --service=$app --action="stop"
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+ynh_script_progression "Ensuring downward compatibility..."
 
 # If max_upload_size doesn't exist, create it
+# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=max_upload_size --value=100
 if [ -z "${max_upload_size:-}" ]; then
 	max_upload_size=100
-	ynh_app_setting_set --app=$app --key=max_upload_size --value=$max_upload_size
+	ynh_app_setting_set --key=max_upload_size --value=$max_upload_size
 fi
 
 # If feed_title doesn't exist, create it
+# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=feed_title --value="Feed title"
 if [ -z "${feed_title:-}" ]; then
 	feed_title="Feed title"
-	ynh_app_setting_set --app=$app --key=feed_title --value=$feed_title
+	ynh_app_setting_set --key=feed_title --value=$feed_title
 fi
 
 # If feed_description doesn't exist, create it
+# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=feed_description --value="Feed description"
 if [ -z "${feed_description:-}" ]; then
 	feed_description="Feed description"
-	ynh_app_setting_set --app=$app --key=feed_description --value=$feed_description
+	ynh_app_setting_set --key=feed_description --value=$feed_description
 fi
 
 # If author_name doesn't exist, create it
+# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=author_name --value="Author Name"
 if [ -z "${author_name:-}" ]; then
 	author_name="Author Name"
-	ynh_app_setting_set --app=$app --key=author_name --value=$author_name
+	ynh_app_setting_set --key=author_name --value=$author_name
 fi
 
 # If author_email doesn't exist, create it
+# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=author_email --value="author@somewhere.example"
 if [ -z "${author_email:-}" ]; then
 	author_email="author@somewhere.example"
-	ynh_app_setting_set --app=$app --key=author_email --value=$author_email
+	ynh_app_setting_set --key=author_email --value=$author_email
 fi
 
 # If copyright_text doesn't exist, create it
+# FIXMEhelpers2.1: maybe replace with: ynh_app_setting_set_default --key=copyright_text --value="Copyright Text"
 if [ -z "${copyright_text:-}" ]; then
 	copyright_text="Copyright Text"
-	ynh_app_setting_set --app=$app --key=copyright_text --value=$copyright_text
+	ynh_app_setting_set --key=copyright_text --value=$copyright_text
 fi
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
+# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
+if ynh_app_upstream_version_changed
 then
-	ynh_script_progression --message="Upgrading source files..." --weight=1
+	ynh_script_progression "Upgrading source files..."
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$install_dir" --keep="config.json"
 fi
 
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 chmod +x "$install_dir/tube"
 
 #=================================================
@@ -86,28 +79,28 @@ chmod +x "$install_dir/tube"
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Updating a configuration file..." --weight=1
+ynh_script_progression "Updating configuration..."
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config
+ynh_config_add_nginx
 
 # Create a dedicated systemd config
-ynh_add_systemd_config
+ynh_config_add_systemd
 
 # Use logrotate to manage app-specific logfile(s)
-ynh_use_logrotate --non-append
+ynh_config_add_logrotate
 
 yunohost service add $app --description="Video Sharing App" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=1
+ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
+ynh_systemctl --service=$app --action="start" --log_path="systemd"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"
