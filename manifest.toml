@@ -11,9 +11,7 @@ maintainers = []
 
 [upstream]
 license = "MIT"
-demo = "https://tube.mills.io"
 code = "https://git.mills.io/prologic/tube"
-website = "https://tube.mills.io"
 
 [integration]
 yunohost = ">= 11.2"
