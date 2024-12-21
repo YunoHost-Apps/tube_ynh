@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # Tube para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/tube.svg)](https://dash.yunohost.org/appci/app/tube) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/tube.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/tube.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/tube)](https://ci-apps.yunohost.org/ci/apps/tube/)
+![Estado funcional](https://apps.yunohost.org/badge/state/tube)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/tube)
 
 [![Instalar Tube con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=tube)
 
@@ -33,22 +35,19 @@ Tube is a Youtube-like (without censorship and features you don't need!) Video S
 
 **Versión actual:** 1.2.0~ynh3
 
-**Demo:** <https://tube.mills.io>
-
 ## Capturas
 
 ![Captura de Tube](./doc/screenshots/screenshot.png)
 
 ## Documentaciones y recursos
 
-- Sitio web oficial: <https://tube.mills.io>
 - Repositorio del código fuente oficial de la aplicación : <https://git.mills.io/prologic/tube>
 - Catálogo YunoHost: <https://apps.yunohost.org/app/tube>
 - Reportar un error: <https://github.com/YunoHost-Apps/tube_ynh/issues>
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/tube_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/tube_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 

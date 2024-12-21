@@ -5,7 +5,9 @@ Il NE doit PAS être modifié à la main.
 
 # Tube pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/tube.svg)](https://dash.yunohost.org/appci/app/tube) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/tube.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/tube.maintain.svg)
+[![Niveau d’intégration](https://apps.yunohost.org/badge/integration/tube)](https://ci-apps.yunohost.org/ci/apps/tube/)
+![Statut du fonctionnement](https://apps.yunohost.org/badge/state/tube)
+![Statut de maintenance](https://apps.yunohost.org/badge/maintained/tube)
 
 [![Installer Tube avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=tube)
 
@@ -32,15 +34,12 @@ Tube est une application de partage de vidéos de type Youtube (sans censure ni 
 
 **Version incluse :** 1.2.0~ynh3
 
-**Démo :** <https://tube.mills.io>
-
 ## Captures d’écran
 
 ![Capture d’écran de Tube](./doc/screenshots/screenshot.png)
 
 ## Documentations et ressources
 
-- Site officiel de l’app : <https://tube.mills.io>
 - Dépôt de code officiel de l’app : <https://git.mills.io/prologic/tube>
 - YunoHost Store : <https://apps.yunohost.org/app/tube>
 - Signaler un bug : <https://github.com/YunoHost-Apps/tube_ynh/issues>

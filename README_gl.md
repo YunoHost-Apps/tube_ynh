@@ -5,7 +5,9 @@ NON debe editarse manualmente.
 
 # Tube para YunoHost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/tube.svg)](https://dash.yunohost.org/appci/app/tube) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/tube.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/tube.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/tube)](https://ci-apps.yunohost.org/ci/apps/tube/)
+![Estado de funcionamento](https://apps.yunohost.org/badge/state/tube)
+![Estado de mantemento](https://apps.yunohost.org/badge/maintained/tube)
 
 [![Instalar Tube con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=tube)
 
@@ -33,15 +35,12 @@ Tube is a Youtube-like (without censorship and features you don't need!) Video S
 
 **Versión proporcionada:** 1.2.0~ynh3
 
-**Demo:** <https://tube.mills.io>
-
 ## Capturas de pantalla
 
 ![Captura de pantalla de Tube](./doc/screenshots/screenshot.png)
 
 ## Documentación e recursos
 
-- Web oficial da app: <https://tube.mills.io>
 - Repositorio de orixe do código: <https://git.mills.io/prologic/tube>
 - Tenda YunoHost: <https://apps.yunohost.org/app/tube>
 - Informar dun problema: <https://github.com/YunoHost-Apps/tube_ynh/issues>

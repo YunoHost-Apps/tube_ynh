@@ -5,7 +5,9 @@
 
 # YunoHost 上的 Tube
 
-[![集成程度](https://dash.yunohost.org/integration/tube.svg)](https://dash.yunohost.org/appci/app/tube) ![工作状态](https://ci-apps.yunohost.org/ci/badges/tube.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/tube.maintain.svg)
+[![集成程度](https://apps.yunohost.org/badge/integration/tube)](https://ci-apps.yunohost.org/ci/apps/tube/)
+![工作状态](https://apps.yunohost.org/badge/state/tube)
+![维护状态](https://apps.yunohost.org/badge/maintained/tube)
 
 [![使用 YunoHost 安装 Tube](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=tube)
 
@@ -33,15 +35,12 @@ Tube is a Youtube-like (without censorship and features you don't need!) Video S
 
 **分发版本：** 1.2.0~ynh3
 
-**演示：** <https://tube.mills.io>
-
 ## 截图
 
 ![Tube 的截图](./doc/screenshots/screenshot.png)
 
 ## 文档与资源
 
-- 官方应用网站： <https://tube.mills.io>
 - 上游应用代码库： <https://git.mills.io/prologic/tube>
 - YunoHost 商店： <https://apps.yunohost.org/app/tube>
 - 报告 bug： <https://github.com/YunoHost-Apps/tube_ynh/issues>
