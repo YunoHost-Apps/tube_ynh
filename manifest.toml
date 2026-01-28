@@ -45,7 +45,7 @@ ram.runtime = "50M"
         rename = "tube"
         format = "tar.gz"
 
-        autoupdate.strategy = "latest_forgejo_release"
+        autoupdate.strategy = "latest_gitea_release"
         autoupdate.asset.amd64 = "^tube_.*_linux_amd64.tar.gz$"
         autoupdate.asset.arm64 = "^tube_.*_linux_arm64.tar.gz$"
 
