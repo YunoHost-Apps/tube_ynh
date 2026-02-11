@@ -14,7 +14,7 @@ license = "MIT"
 code = "https://git.mills.io/prologic/tube"
 
 [integration]
-yunohost = ">= 11.2.18"
+yunohost = ">= 12.1.38"
 helpers_version = "2.1"
 architectures = ["amd64", "arm64"]
 multi_instance = true
