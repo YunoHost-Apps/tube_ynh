@@ -11,15 +11,17 @@ maintainers = []
 
 [upstream]
 license = "MIT"
-code = "https://git.mills.io/prologic/tube"
+code = "https://git.mills.io/prologic/tube/"
 
 [integration]
-yunohost = ">= 11.2.18"
+yunohost = ">= 12.1.39"
 helpers_version = "2.1"
 architectures = ["amd64", "arm64"]
 multi_instance = true
+
 ldap = false
 sso = false
+
 disk = "50M"
 ram.build = "50M"
 ram.runtime = "50M"
@@ -45,9 +47,9 @@ ram.runtime = "50M"
         rename = "tube"
         format = "tar.gz"
 
-        autoupdate.strategy = "latest_forgejo_release"
-        autoupdate.asset.amd64 = "^tube_.*_linux_amd64.tar.gz$"
-        autoupdate.asset.arm64 = "^tube_.*_linux_arm64.tar.gz$"
+        #autoupdate.strategy = "latest_gitea_release"
+        #autoupdate.asset.amd64 = "^tube_.*_linux_amd64.tar.gz$"
+        #autoupdate.asset.arm64 = "^tube_.*_linux_arm64.tar.gz$"
 
     [resources.ports]
 

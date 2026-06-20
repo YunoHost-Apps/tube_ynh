@@ -1,5 +1,5 @@
 [Unit]
-Description=Tube: video Sharing App
+Description=Tube: video Sharing
 After=network.target
 
 [Service]

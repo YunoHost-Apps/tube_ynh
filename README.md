@@ -25,7 +25,7 @@ Youtube-like, video Sharing App
 
 [![Automatic tests level](https://apps.yunohost.org/badge/cilevel/tube)](https://ci-apps.yunohost.org/ci/apps/tube/)
 
-🛠️ Upstream Tube repository: <https://git.mills.io/prologic/tube>
+🛠️ Upstream Tube repository: <https://git.mills.io/prologic/tube/>
 
 Pull request are welcome and should target the [`testing` branch](https://github.com/YunoHost-Apps/tube_ynh/tree/testing).
 

@@ -24,7 +24,6 @@ ynh_app_setting_set_default --key=copyright_text --value="Copyright Text"
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-
 ynh_script_progression "Upgrading source files..."
 
 # Download, check integrity, uncompress and patch the source from app.src
@@ -33,11 +32,9 @@ ynh_setup_source --dest_dir="$install_dir" --keep="config.json"
 chmod +x "$install_dir/tube"
 
 #=================================================
-# RECONFIGURE THE APP (UPDATE CONF, APPLY MIGRATIONS, ...)
+# REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-# UPDATE A CONFIG FILE
-#=================================================
-ynh_script_progression "Updating configuration..."
+ynh_script_progression "Upgrading system configurations related to $app..."
 
 # Create a dedicated NGINX config
 ynh_config_add_nginx
@@ -55,7 +52,7 @@ yunohost service add $app --description="Video Sharing App" --log="/var/log/$app
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action="start" --log_path="systemd"
+ynh_systemctl --service=$app --action="start"
 
 #=================================================
 # END OF SCRIPT
